@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Permanent Marker", cursive;
+}
+
+body {
+  background-color: rgb(126, 170, 199);
+  color: white;
+}
+
+header {
+  font-size: 2rem;
+}
+
+header,
+form {
+  min-height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form input,
+form button {
+  padding: 0.4rem;
+  font-size: 1.8rem;
+  background: white;
+  border: none;
+  border-radius: 2rem;
+}
+
+form button {
+  color: rgb(255, 200, 0);
+  margin: 1.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+form button:hover {
+  color: white;
+  background-color: rgb(255, 200, 0);
+  transition: all 0.3s ease;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+}
+
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+select {
+  color: rgb(255, 200, 0);
+  cursor: pointer;
+  padding: 1rem;
+  width: 10rem;
+  height: 3.2rem;
+}
+
+.select::after {
+  content: "\25BC";
+  position: relative;
+  background-color: rgb(255, 200, 0);
+  top: 0;
+  right: 0;
+  margin-left: -3rem;
+  padding: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select:hover::after {
+  background-color: white;
+  color: rgb(255, 200, 0);
+}
