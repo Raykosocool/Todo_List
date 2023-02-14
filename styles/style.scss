@@ -32,16 +32,16 @@ form button {
 }
 
 form button {
-  color: rgb(255, 200, 0);
   margin: 1.5rem;
   padding: 0.6rem;
+  color: rgb(255, 200, 0);
   cursor: pointer;
-}
 
-form button:hover {
-  color: white;
-  background-color: rgb(255, 200, 0);
-  transition: all 0.3s ease;
+  &:hover {
+    color: white;
+    background-color: rgb(255, 200, 0);
+    transition: all 0.3s ease;
+  }
 }
 
 select {
@@ -50,6 +50,11 @@ select {
   appearance: none;
   outline: none;
   border: none;
+  padding: 1rem;
+  width: 10rem;
+  height: 3.2rem;
+  color: rgb(255, 200, 0);
+  cursor: pointer;
 }
 
 .select {
@@ -57,29 +62,80 @@ select {
   position: relative;
   overflow: hidden;
   border-radius: 50px;
+
+  &::after {
+    top: 0;
+    right: 0;
+    margin-left: -3rem;
+    padding: 1rem;
+    background-color: rgb(255, 200, 0);
+    content: "\25BC";
+    position: relative;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  &:hover::after {
+    background-color: white;
+    color: rgb(255, 200, 0);
+  }
 }
 
-select {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  min-width: 30%;
+  font-size: 2rem;
   color: rgb(255, 200, 0);
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  li {
+    padding-right: 0.5rem;
+    flex: 1;
+  }
+}
+
+.combtn,
+.trashbtn {
+  color: white;
+  border: none;
+  padding: 1rem;
   cursor: pointer;
-  padding: 1rem;
-  width: 10rem;
-  height: 3.2rem;
+  font-size: 1.5rem;
 }
 
-.select::after {
-  content: "\25BC";
-  position: relative;
+.combtn {
   background-color: rgb(255, 200, 0);
-  top: 0;
-  right: 0;
-  margin-left: -3rem;
-  padding: 1rem;
-  pointer-events: none;
-  transition: all 0.3s ease;
 }
 
-.select:hover::after {
+.trashbtn {
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  background-color: rgb(171, 171, 171);
+}
+
+.todos {
+  margin: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 2rem;
   background-color: white;
   color: rgb(255, 200, 0);
+  display: flex;
+  align-items: center;
+}
+
+.slide {
+  transform: translateX(10rem);
+  opacity: 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
