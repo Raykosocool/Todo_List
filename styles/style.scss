@@ -92,20 +92,17 @@ select {
   font-size: 2rem;
   color: rgb(255, 200, 0);
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   list-style: none;
 
   li {
-    padding-left: 1rem;
-    margin: 1rem;
-    border-radius: 2rem;
-    background-color: white;
+    padding-right: 0.5rem;
+    flex: 1;
   }
 }
 
-.com-btn,
-.trash-btn {
+.combtn,
+.trashbtn {
   color: white;
   border: none;
   padding: 1rem;
@@ -113,25 +110,32 @@ select {
   font-size: 1.5rem;
 }
 
-.com-btn {
+.combtn {
   background-color: rgb(255, 200, 0);
 }
 
-.trash-btn {
+.trashbtn {
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   background-color: rgb(171, 171, 171);
 }
 
-.todo {
+.todos {
   margin: 0.5rem;
   padding-left: 0.5rem;
+  border-radius: 2rem;
   background-color: white;
   color: rgb(255, 200, 0);
-  font-size: 1.5rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: 0.5s;
-  border-radius: 2rem;
+}
+
+.slide {
+  transform: translateX(10rem);
+  opacity: 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
