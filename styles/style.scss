@@ -32,16 +32,16 @@ form button {
 }
 
 form button {
-  color: rgb(255, 200, 0);
   margin: 1.5rem;
   padding: 0.6rem;
+  color: rgb(255, 200, 0);
   cursor: pointer;
-}
 
-form button:hover {
-  color: white;
-  background-color: rgb(255, 200, 0);
-  transition: all 0.3s ease;
+  &:hover {
+    color: white;
+    background-color: rgb(255, 200, 0);
+    transition: all 0.3s ease;
+  }
 }
 
 select {
@@ -50,6 +50,11 @@ select {
   appearance: none;
   outline: none;
   border: none;
+  padding: 1rem;
+  width: 10rem;
+  height: 3.2rem;
+  color: rgb(255, 200, 0);
+  cursor: pointer;
 }
 
 .select {
@@ -57,29 +62,76 @@ select {
   position: relative;
   overflow: hidden;
   border-radius: 50px;
+
+  &::after {
+    top: 0;
+    right: 0;
+    margin-left: -3rem;
+    padding: 1rem;
+    background-color: rgb(255, 200, 0);
+    content: "\25BC";
+    position: relative;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  &:hover::after {
+    background-color: white;
+    color: rgb(255, 200, 0);
+  }
 }
 
-select {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  min-width: 30%;
+  font-size: 2rem;
   color: rgb(255, 200, 0);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  list-style: none;
+
+  li {
+    padding-left: 1rem;
+    margin: 1rem;
+    border-radius: 2rem;
+    background-color: white;
+  }
+}
+
+.com-btn,
+.trash-btn {
+  color: white;
+  border: none;
+  padding: 1rem;
   cursor: pointer;
-  padding: 1rem;
-  width: 10rem;
-  height: 3.2rem;
+  font-size: 1.5rem;
 }
 
-.select::after {
-  content: "\25BC";
-  position: relative;
+.com-btn {
   background-color: rgb(255, 200, 0);
-  top: 0;
-  right: 0;
-  margin-left: -3rem;
-  padding: 1rem;
-  pointer-events: none;
-  transition: all 0.3s ease;
 }
 
-.select:hover::after {
+.trash-btn {
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  background-color: rgb(171, 171, 171);
+}
+
+.todo {
+  margin: 0.5rem;
+  padding-left: 0.5rem;
   background-color: white;
   color: rgb(255, 200, 0);
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  border-radius: 2rem;
 }
