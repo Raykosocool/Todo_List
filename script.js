@@ -1,10 +1,14 @@
 const todoInput = document.querySelector(".todo-input");
 const todoBtn = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
+const Filter = document.querySelector(".todo-select");
 
 todoBtn.addEventListener("keypress", addTodoKey);
 todoBtn.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
+Filter.addEventListener("change", FilterStatus);
+
+localStorage.removeItem("Todos");
 
 function addTodoKey(event) {
   if (event.which === 13) {
@@ -17,7 +21,7 @@ function addTodo(event) {
   const TextInput = todoInput.value;
   Savelocal(TextInput);
   const newTodo = document.createElement("li");
-  newTodo.innerText = todoInput.value;
+  newTodo.innerHTML = TextInput;
   newTodo.classList.add("todo-item");
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todos");
@@ -39,19 +43,53 @@ function addTodo(event) {
 function deleteCheck(event) {
   const target = event.target;
 
-  if (target.classList[0] === "trashbtn") {
+  if (target.classList.contains("trashbtn")) {
     target.parentNode.remove();
-    localStorage.removeItem("Todos");
+    let value = JSON.parse(localStorage.getItem("Todos"));
+    let a = target.parentNode.innerText;
+
+    if (value.includes(a)) {
+      value.splice(value.indexOf(a), 1);
+      localStorage.setItem("Todos", JSON.stringify(value));
+      console.log(value);
+    }
+  }
+
+  if (target.classList.contains("combtn")) {
+    target.parentNode.classList.toggle("completed");
   }
 }
 
-function Savelocal(todo) {
-  let t;
-  if (localStorage.getItem("Todos") === null) {
-    t = [];
-  } else {
-    t = JSON.parse(localStorage.getItem("Todos"));
-  }
-  t.push(todo);
+function Savelocal(event) {
+  const t = JSON.parse(localStorage.getItem("Todos")) || [];
+  t.push(event);
   localStorage.setItem("Todos", JSON.stringify(t));
+  console.log(t);
+}
+
+function FilterStatus(event) {
+  const Select = document.querySelectorAll(".todos");
+  Select.forEach(function (CheckCompleted) {
+    switch (event.target.value) {
+      case "All":
+        CheckCompleted.style.display = "flex";
+        break;
+
+      case "Completed":
+        if (CheckCompleted.classList.contains("completed")) {
+          CheckCompleted.style.display = "flex";
+        } else {
+          CheckCompleted.style.display = "none";
+        }
+        break;
+
+      case "Incomplete":
+        if (CheckCompleted.classList.contains("completed")) {
+          CheckCompleted.style.display = "none";
+        } else {
+          CheckCompleted.style.display = "flex";
+        }
+        break;
+    }
+  });
 }
