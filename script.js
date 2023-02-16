@@ -1,7 +1,7 @@
-const todoInput = document.querySelector(".todo-input");
-const todoBtn = document.querySelector(".todo-button");
-const todoList = document.querySelector(".todo-list");
-const Filter = document.querySelector(".todo-select");
+const todoInput = document.querySelector(".TodoInput");
+const todoBtn = document.querySelector(".TodoButton");
+const todoList = document.querySelector(".TodoListUl");
+const Filter = document.querySelector(".TodoSelect");
 
 todoBtn.addEventListener("keypress", addTodoKey);
 todoBtn.addEventListener("click", addTodo);
@@ -19,57 +19,66 @@ function addTodoKey(event) {
 function addTodo(event) {
   event.preventDefault();
   const TextInput = todoInput.value;
+
+  if (TextInput.trim().length === 0) {
+    todoInput.value = "";
+    return alert("請輸入代辦事項");
+  }
   Savelocal(TextInput);
-  const newTodo = document.createElement("li");
-  newTodo.innerHTML = TextInput;
-  newTodo.classList.add("todo-item");
+
   const todoDiv = document.createElement("div");
-  todoDiv.classList.add("todos");
+  todoDiv.classList.add("TodosDiv");
+
+  const newTodo = document.createElement("li");
+  newTodo.classList.add("TodosLi");
+
+  newTodo.innerHTML = TextInput;
   todoDiv.appendChild(newTodo);
+
+  const ComBtn = document.createElement("button");
+  ComBtn.innerHTML = '<i class="fas fa-check-circle">';
+  ComBtn.classList.add("CompleteButton");
+  todoDiv.appendChild(ComBtn);
+
+  const DelBtn = document.createElement("button");
+  DelBtn.innerHTML = '<i class="fas fa-trash">';
+  DelBtn.classList.add("DeleteButton");
+  todoDiv.appendChild(DelBtn);
+
   todoList.appendChild(todoDiv);
   todoInput.value = "";
-
-  const CompleteBtn = document.createElement("button");
-  CompleteBtn.innerHTML = '<i class="fas fa-check-circle">';
-  CompleteBtn.classList.add("combtn");
-  todoDiv.appendChild(CompleteBtn);
-
-  const TrashBtn = document.createElement("button");
-  TrashBtn.innerHTML = '<i class="fas fa-trash">';
-  TrashBtn.classList.add("trashbtn");
-  todoDiv.appendChild(TrashBtn);
 }
 
 function deleteCheck(event) {
   const target = event.target;
 
-  if (target.classList.contains("trashbtn")) {
+  if (target.classList.contains("DeleteButton")) {
     target.parentNode.remove();
-    let value = JSON.parse(localStorage.getItem("Todos"));
-    let a = target.parentNode.innerText;
+    let JsonArrayOfValue = JSON.parse(localStorage.getItem("Todos"));
+    let TargetText = target.parentNode.innerText;
 
-    if (value.includes(a)) {
-      value.splice(value.indexOf(a), 1);
-      localStorage.setItem("Todos", JSON.stringify(value));
-      console.log(value);
+    if (JsonArrayOfValue.includes(TargetText)) {
+      JsonArrayOfValue.splice(JsonArrayOfValue.indexOf(TargetText), 1);
+      localStorage.setItem("Todos", JSON.stringify(JsonArrayOfValue));
+      console.log(JsonArrayOfValue);
     }
   }
 
-  if (target.classList.contains("combtn")) {
+  if (target.classList.contains("CompleteButton")) {
     target.parentNode.classList.toggle("completed");
   }
 }
 
 function Savelocal(event) {
-  const t = JSON.parse(localStorage.getItem("Todos")) || [];
-  t.push(event);
-  localStorage.setItem("Todos", JSON.stringify(t));
-  console.log(t);
+  const JsonArrayOfValue = JSON.parse(localStorage.getItem("Todos")) || [];
+  JsonArrayOfValue.push(event);
+  localStorage.setItem("Todos", JSON.stringify(JsonArrayOfValue));
+  console.log(JsonArrayOfValue);
 }
 
 function FilterStatus(event) {
-  const Select = document.querySelectorAll(".todos");
-  Select.forEach(function (CheckCompleted) {
+  const NodeList = document.querySelectorAll(".TodosDiv");
+  NodeList.forEach(function (CheckCompleted) {
     switch (event.target.value) {
       case "All":
         CheckCompleted.style.display = "flex";

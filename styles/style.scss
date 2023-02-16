@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: rgb(126, 170, 199);
   color: white;
+  background-color: rgb(126, 170, 199);
 }
 
 header {
@@ -20,22 +20,22 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-form input,
-form button {
-  padding: 0.4rem;
-  font-size: 1.8rem;
-  background: white;
-  border: none;
-  border-radius: 2rem;
+  input,
+  button {
+    padding: 0.4rem;
+    font-size: 1.8rem;
+    border-radius: 32px;
+    border: none;
+    background: white;
+  }
 }
 
 form button {
   margin: 1.5rem;
   padding: 0.6rem;
-  color: rgb(255, 200, 0);
   cursor: pointer;
+  color: rgb(255, 200, 0);
   transition: all 0.3s ease;
 
   &:hover {
@@ -44,10 +44,28 @@ form button {
   }
 }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+form div {
+  margin: 1rem;
+  border-radius: 50px;
+  overflow: hidden;
+
+  &::after {
+    margin-left: -2rem;
+    padding: 1rem;
+    background-color: rgb(255, 200, 0);
+    content: "\25BC";
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  &:hover::after {
+    color: rgb(255, 200, 0);
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+}
+
+.TodoSelect {
   outline: none;
   border: none;
   padding: 1rem;
@@ -57,38 +75,14 @@ select {
   cursor: pointer;
 }
 
-.select {
-  margin: 1rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50px;
-
-  &::after {
-    top: 0;
-    right: 0;
-    margin-left: -3rem;
-    padding: 1rem;
-    background-color: rgb(255, 200, 0);
-    content: "\25BC";
-    position: relative;
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-
-  &:hover::after {
-    background-color: white;
-    color: rgb(255, 200, 0);
-  }
-}
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.todo-list {
-  min-width: 30%;
+.TodoListUl {
+  min-width: 30vw;
   font-size: 2rem;
   color: rgb(255, 200, 0);
   display: flex;
@@ -101,18 +95,18 @@ select {
   }
 }
 
-.combtn {
+.CompleteButton {
   background-color: rgb(255, 200, 0);
 }
 
-.trashbtn {
+.DeleteButton {
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   background-color: rgb(171, 171, 171);
 }
 
-.combtn,
-.trashbtn {
+.CompleteButton,
+.DeleteButton {
   color: white;
   border: none;
   padding: 1rem;
@@ -120,7 +114,7 @@ select {
   font-size: 1.5rem;
 }
 
-.todos {
+.TodosDiv {
   margin: 0.5rem;
   padding-left: 0.5rem;
   border-radius: 2rem;
