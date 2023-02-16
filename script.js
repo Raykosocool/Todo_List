@@ -8,7 +8,7 @@ todoBtn.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
 Filter.addEventListener("change", FilterStatus);
 
-localStorage.removeItem("Todos");
+//localStorage.removeItem("Todos");
 
 function addTodoKey(event) {
   if (event.which === 13) {
