@@ -48,13 +48,16 @@ form div {
   margin: 1rem;
   border-radius: 50px;
   overflow: hidden;
+  position: relative;
 
   &::after {
-    margin-left: -2rem;
+    top: 0;
+    right: 0;
     padding: 1rem;
+    position: absolute;
     background-color: rgb(255, 200, 0);
     content: "\25BC";
-    cursor: pointer;
+    pointer-events: none;
     transition: all 0.3s ease;
   }
 
@@ -69,7 +72,7 @@ form div {
   outline: none;
   border: none;
   padding: 1rem;
-  width: 10rem;
+  width: 200px;
   height: 3.2rem;
   color: rgb(255, 200, 0);
   cursor: pointer;
@@ -103,6 +106,14 @@ form div {
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   background-color: rgb(171, 171, 171);
+}
+
+.fa-check-circle {
+  pointer-events: none;
+}
+
+.fa-trash {
+  pointer-events: none;
 }
 
 .CompleteButton,
